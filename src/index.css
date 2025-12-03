@@ -6,100 +6,100 @@
 
 @layer base {
   :root {
-    /* Winxcar Brand Colors - Blue + White + Gray */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    /* Professional Car Rental - Navy Blue + Clean White + Slate Gray */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Primary: Professional Blue */
-    --primary: 215 80% 45%;
+    /* Primary: Deep Navy Blue - Professional & Trustworthy */
+    --primary: 222 47% 20%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Light Gray */
-    --secondary: 210 15% 95%;
-    --secondary-foreground: 215 25% 25%;
+    /* Secondary: Light Slate */
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 20%;
 
-    --muted: 210 15% 94%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 210 20% 88%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent: Darker Blue for CTA */
-    --accent: 215 90% 50%;
+    /* Accent: Vibrant Blue for CTAs - High Visibility */
+    --accent: 217 91% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 88%;
-    --input: 210 15% 88%;
-    --ring: 215 80% 45%;
+    --border: 214 20% 82%;
+    --input: 214 20% 82%;
+    --ring: 217 91% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Custom Winxcar tokens */
-    --winx-blue: 215 80% 45%;
-    --winx-blue-dark: 215 85% 35%;
-    --winx-blue-light: 215 75% 55%;
-    --winx-gray: 210 15% 55%;
-    --winx-gray-light: 210 15% 75%;
-    --winx-gray-dark: 215 20% 35%;
-    --winx-success: 160 70% 40%;
-    --winx-warning: 45 95% 50%;
+    --winx-blue: 222 47% 20%;
+    --winx-blue-dark: 222 50% 15%;
+    --winx-blue-light: 217 91% 50%;
+    --winx-gray: 215 16% 47%;
+    --winx-gray-light: 210 20% 75%;
+    --winx-gray-dark: 222 30% 25%;
+    --winx-success: 142 71% 45%;
+    --winx-warning: 38 92% 50%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(215 85% 35%) 0%, hsl(215 80% 50%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(215 90% 50%) 0%, hsl(215 75% 60%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 15% 98%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 50% 15%) 0%, hsl(222 47% 25%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(217 91% 50%) 0%, hsl(217 80% 60%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 97%) 100%);
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.1), 0 2px 4px -2px hsl(215 25% 15% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.1), 0 8px 10px -6px hsl(215 25% 15% / 0.1);
-    --shadow-glow: 0 0 40px hsl(215 80% 45% / 0.25);
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.08), 0 2px 4px -2px hsl(222 47% 11% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.08);
+    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.08);
+    --shadow-glow: 0 0 25px hsl(217 91% 50% / 0.25);
 
-    --sidebar-background: 215 85% 35%;
+    --sidebar-background: 222 50% 15%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 215 90% 50%;
+    --sidebar-primary: 217 91% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 80% 45%;
+    --sidebar-accent: 222 47% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 215 75% 40%;
-    --sidebar-ring: 215 90% 50%;
+    --sidebar-border: 222 40% 25%;
+    --sidebar-ring: 217 91% 50%;
   }
 
   .dark {
-    --background: 215 25% 10%;
+    --background: 222 47% 8%;
     --foreground: 210 20% 98%;
 
-    --card: 215 25% 13%;
+    --card: 222 47% 11%;
     --card-foreground: 210 20% 98%;
 
-    --popover: 215 25% 13%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 215 80% 55%;
+    --primary: 217 91% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 25% 18%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 222 40% 18%;
+    --secondary-foreground: 210 20% 95%;
 
-    --muted: 215 25% 18%;
-    --muted-foreground: 210 15% 60%;
+    --muted: 222 40% 18%;
+    --muted-foreground: 215 16% 55%;
 
-    --accent: 215 90% 55%;
+    --accent: 217 91% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 22%;
-    --input: 215 25% 22%;
-    --ring: 215 80% 55%;
+    --border: 222 40% 22%;
+    --input: 222 40% 22%;
+    --ring: 217 91% 55%;
   }
 }
 
