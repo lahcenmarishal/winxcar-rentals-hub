@@ -6,100 +6,100 @@
 
 @layer base {
   :root {
-    /* Winxcar Brand Colors - Deep Navy + Vibrant Orange */
-    --background: 210 20% 98%;
-    --foreground: 220 30% 15%;
+    /* Winxcar Brand Colors - Blue + White + Gray */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 15%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 15%;
+    --popover-foreground: 215 25% 15%;
 
-    /* Primary: Deep Navy */
-    --primary: 220 60% 20%;
+    /* Primary: Professional Blue */
+    --primary: 215 80% 45%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Light Gray Blue */
-    --secondary: 210 25% 95%;
-    --secondary-foreground: 220 30% 25%;
+    /* Secondary: Light Gray */
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 215 15% 45%;
 
-    /* Accent: Vibrant Orange */
-    --accent: 25 95% 53%;
+    /* Accent: Darker Blue for CTA */
+    --accent: 215 90% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 25 95% 53%;
+    --border: 210 15% 88%;
+    --input: 210 15% 88%;
+    --ring: 215 80% 45%;
 
     --radius: 0.75rem;
 
     /* Custom Winxcar tokens */
-    --winx-navy: 220 60% 20%;
-    --winx-navy-light: 220 50% 30%;
-    --winx-orange: 25 95% 53%;
-    --winx-orange-light: 25 95% 60%;
-    --winx-orange-dark: 25 95% 45%;
-    --winx-gray: 210 15% 60%;
+    --winx-blue: 215 80% 45%;
+    --winx-blue-dark: 215 85% 35%;
+    --winx-blue-light: 215 75% 55%;
+    --winx-gray: 210 15% 55%;
+    --winx-gray-light: 210 15% 75%;
+    --winx-gray-dark: 215 20% 35%;
     --winx-success: 160 70% 40%;
     --winx-warning: 45 95% 50%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(220 60% 20%) 0%, hsl(220 50% 30%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(35 95% 55%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 25% 98%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(215 85% 35%) 0%, hsl(215 80% 50%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(215 90% 50%) 0%, hsl(215 75% 60%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 15% 98%) 100%);
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 30% 15% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(220 30% 15% / 0.1), 0 2px 4px -2px hsl(220 30% 15% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(220 30% 15% / 0.1), 0 4px 6px -4px hsl(220 30% 15% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(220 30% 15% / 0.1), 0 8px 10px -6px hsl(220 30% 15% / 0.1);
-    --shadow-glow: 0 0 40px hsl(25 95% 53% / 0.3);
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.1), 0 2px 4px -2px hsl(215 25% 15% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.1), 0 8px 10px -6px hsl(215 25% 15% / 0.1);
+    --shadow-glow: 0 0 40px hsl(215 80% 45% / 0.25);
 
-    --sidebar-background: 220 60% 20%;
+    --sidebar-background: 215 85% 35%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary: 215 90% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 50% 25%;
+    --sidebar-accent: 215 80% 45%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 220 50% 25%;
-    --sidebar-ring: 25 95% 53%;
+    --sidebar-border: 215 75% 40%;
+    --sidebar-ring: 215 90% 50%;
   }
 
   .dark {
-    --background: 220 30% 10%;
+    --background: 215 25% 10%;
     --foreground: 210 20% 98%;
 
-    --card: 220 30% 13%;
+    --card: 215 25% 13%;
     --card-foreground: 210 20% 98%;
 
-    --popover: 220 30% 13%;
+    --popover: 215 25% 13%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 25 95% 53%;
+    --primary: 215 80% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 30% 18%;
+    --secondary: 215 25% 18%;
     --secondary-foreground: 210 20% 98%;
 
-    --muted: 220 30% 18%;
+    --muted: 215 25% 18%;
     --muted-foreground: 210 15% 60%;
 
-    --accent: 25 95% 53%;
+    --accent: 215 90% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 30% 20%;
-    --input: 220 30% 20%;
-    --ring: 25 95% 53%;
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 215 80% 55%;
   }
 }
 
@@ -113,7 +113,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight;
+    @apply font-heading font-bold tracking-tight text-foreground;
   }
 }
 
