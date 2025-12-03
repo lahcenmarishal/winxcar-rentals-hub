@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Car, Phone } from "lucide-react";
+import { Menu, X, Car, Phone, LayoutDashboard, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -14,17 +15,18 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
       <nav className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
-            <Car className="w-6 h-6 text-accent-foreground" />
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
+            <Car className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="font-heading font-bold text-xl text-foreground">
-            Winx<span className="text-accent">car</span>
+            Winx<span className="text-primary">car</span>
           </span>
         </Link>
 
@@ -48,8 +50,32 @@ export function Navbar() {
             <Phone className="w-4 h-4" />
             <span>+212 522 123 456</span>
           </a>
+          
+          {isAdmin && (
+            <Link to="/admin">
+              <Button variant="outline" size="sm" className="gap-2">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </Link>
+          )}
+          
+          {user ? (
+            <Button variant="ghost" size="sm" onClick={signOut} className="gap-2">
+              <LogOut className="w-4 h-4" />
+              Déconnexion
+            </Button>
+          ) : (
+            <Link to="/auth">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <LogIn className="w-4 h-4" />
+                Connexion
+              </Button>
+            </Link>
+          )}
+          
           <Link to="/catalogue">
-            <Button variant="accent" size="default">
+            <Button variant="default" size="default">
               Réserver
             </Button>
           </Link>
@@ -81,16 +107,47 @@ export function Navbar() {
               className={cn(
                 "px-4 py-3 rounded-lg font-medium transition-colors",
                 location.pathname === link.href
-                  ? "bg-accent/10 text-accent"
+                  ? "bg-primary/10 text-primary"
                   : "hover:bg-secondary"
               )}
             >
               {link.label}
             </Link>
           ))}
+          
+          {isAdmin && (
+            <Link
+              to="/admin"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              Dashboard Admin
+            </Link>
+          )}
+          
+          {user ? (
+            <button
+              onClick={() => { signOut(); setIsOpen(false); }}
+              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2 text-left"
+            >
+              <LogOut className="w-4 h-4" />
+              Déconnexion
+            </button>
+          ) : (
+            <Link
+              to="/auth"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2"
+            >
+              <LogIn className="w-4 h-4" />
+              Connexion
+            </Link>
+          )}
+          
           <div className="mt-4 pt-4 border-t border-border">
             <Link to="/catalogue" onClick={() => setIsOpen(false)}>
-              <Button variant="accent" className="w-full">
+              <Button variant="default" className="w-full">
                 Réserver Maintenant
               </Button>
             </Link>
