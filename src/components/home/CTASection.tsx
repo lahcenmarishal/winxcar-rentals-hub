@@ -12,7 +12,7 @@ export function CTASection() {
 
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center text-primary-foreground">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 text-white">
             Prêt à prendre la route ?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">

@@ -91,7 +91,7 @@ export function CategoriesSection() {
                     <p className="text-white/70 text-sm">{cat.description}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-accent font-bold text-xl">{cat.price} DH</p>
+                    <p className="text-white font-bold text-xl">{cat.price} DH</p>
                     <p className="text-white/60 text-xs">par jour</p>
                   </div>
                 </div>
