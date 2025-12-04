@@ -17,7 +17,7 @@
     --popover-foreground: 222 47% 11%;
 
     /* Primary: Navy Blue - Professional & Trustworthy */
-    --primary: 222 45% 28%;
+    --primary: 222 42% 36%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary: Light Slate */
@@ -41,8 +41,8 @@
     --radius: 0.5rem;
 
     /* Custom Winxcar tokens */
-    --winx-blue: 222 45% 28%;
-    --winx-blue-dark: 222 50% 22%;
+    --winx-blue: 222 42% 36%;
+    --winx-blue-dark: 222 45% 30%;
     --winx-blue-light: 217 91% 50%;
     --winx-gray: 215 16% 47%;
     --winx-gray-light: 210 20% 75%;
@@ -51,7 +51,7 @@
     --winx-warning: 38 92% 50%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 45% 22%) 0%, hsl(222 45% 32%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 42% 30%) 0%, hsl(222 42% 40%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(217 91% 50%) 0%, hsl(217 80% 60%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 97%) 100%);
 
@@ -62,7 +62,7 @@
     --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.08);
     --shadow-glow: 0 0 25px hsl(217 91% 50% / 0.25);
 
-    --sidebar-background: 222 45% 22%;
+    --sidebar-background: 222 42% 30%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 217 91% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
