@@ -16,13 +16,13 @@ export function HeroSection() {
           {/* Content */}
           <div className="text-primary-foreground space-y-6 animate-slide-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 rounded-full text-sm font-medium backdrop-blur-sm">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
               Location de véhicules au Maroc
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight text-white">
               Louez la voiture 
-              <span className="text-accent block mt-2">de vos rêves</span>
+              <span className="text-white block mt-2">de vos rêves</span>
             </h1>
             
             <p className="text-lg text-primary-foreground/80 max-w-lg leading-relaxed">
@@ -52,7 +52,7 @@ export function HeroSection() {
                 { icon: MapPin, label: "4 agences au Maroc" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-sm text-primary-foreground/70">
-                  <Icon className="w-5 h-5 text-accent" />
+                  <Icon className="w-5 h-5 text-white" />
                   <span>{label}</span>
                 </div>
               ))}
@@ -71,7 +71,7 @@ export function HeroSection() {
             {/* Floating Card */}
             <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl shadow-card z-20 animate-scale-in" style={{ animationDelay: "0.3s" }}>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                   <span className="text-2xl">🚗</span>
                 </div>
                 <div>
