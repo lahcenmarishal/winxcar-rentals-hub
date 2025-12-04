@@ -35,7 +35,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Liens Rapides</h4>
+            <h4 className="font-heading font-semibold text-lg mb-4 text-white">Liens Rapides</h4>
             <ul className="space-y-2">
               {[
                 { href: "/", label: "Accueil" },
@@ -57,7 +57,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Nos Services</h4>
+            <h4 className="font-heading font-semibold text-lg mb-4 text-white">Nos Services</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li>Location courte durée</li>
               <li>Location longue durée</li>
@@ -69,7 +69,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Contact</h4>
+            <h4 className="font-heading font-semibold text-lg mb-4 text-white">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-primary-foreground/70">
                 <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
