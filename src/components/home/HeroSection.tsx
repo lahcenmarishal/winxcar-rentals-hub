@@ -20,7 +20,7 @@ export function HeroSection() {
               Location de véhicules au Maroc
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight text-white">
               Louez la voiture 
               <span className="text-accent block mt-2">de vos rêves</span>
             </h1>
@@ -81,9 +81,9 @@ export function HeroSection() {
               </div>
             </div>
             {/* Price Badge */}
-            <div className="absolute top-6 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-xl shadow-lg z-20 animate-scale-in" style={{ animationDelay: "0.5s" }}>
-              <p className="text-sm font-medium">À partir de</p>
-              <p className="text-2xl font-bold">250 DH/jour</p>
+            <div className="absolute top-6 -right-4 bg-accent px-4 py-2 rounded-xl shadow-lg z-20 animate-scale-in" style={{ animationDelay: "0.5s" }}>
+              <p className="text-sm font-medium text-white">À partir de</p>
+              <p className="text-2xl font-bold text-white">250 DH/jour</p>
             </div>
           </div>
         </div>
