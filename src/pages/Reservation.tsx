@@ -326,12 +326,12 @@ export default function Reservation() {
                   </div>
                   <div className="space-y-2">
                     <Label>Agence de retour</Label>
-                    <Select value={agenceRetour} onValueChange={setAgenceRetour}>
+                    <Select value={agenceRetour || "same"} onValueChange={(val) => setAgenceRetour(val === "same" ? "" : val)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Même agence que le retrait" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">Même agence que le retrait</SelectItem>
+                        <SelectItem value="same">Même agence que le retrait</SelectItem>
                         {agences?.map((agence) => (
                           <SelectItem key={agence.id} value={agence.id}>
                             {agence.nom} - {agence.ville}
