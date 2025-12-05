@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { useCurrency } from "@/hooks/useCurrency";
 import { Plus, Pencil, Trash2, Car, Search, Upload, X } from "lucide-react";
 import type { CategorieVoiture, BoiteVitesse, Carburant } from "@/types/database";
 
@@ -54,6 +55,7 @@ export default function Voitures() {
   const [uploading, setUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { toast } = useToast();
+  const { formatPrice } = useCurrency();
   const queryClient = useQueryClient();
 
   const { data: voitures, isLoading } = useQuery({
@@ -239,11 +241,11 @@ export default function Voitures() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-bold">Véhicules</h1>
-          <p className="text-muted-foreground">Gérez votre flotte de véhicules</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold">Véhicules</h1>
+          <p className="text-muted-foreground text-sm sm:text-base">Gérez votre flotte de véhicules</p>
         </div>
         <Dialog open={isOpen} onOpenChange={(open) => { setIsOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -454,7 +456,7 @@ export default function Voitures() {
                       <span>•</span>
                       <span>{voiture.carburant}</span>
                     </div>
-                    <p className="text-lg font-bold text-accent">{voiture.prix_jour} DH/jour</p>
+                    <p className="text-lg font-bold text-accent">{formatPrice(voiture.prix_jour)}/jour</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button variant="outline" size="icon" onClick={() => handleEdit(voiture)}>

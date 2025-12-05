@@ -4,6 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { useVoiture } from "@/hooks/useVoitures";
 import { useAgences } from "@/hooks/useAgences";
 import { useOptions } from "@/hooks/useOptions";
+import { useCurrency } from "@/hooks/useCurrency";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,7 @@ export default function Reservation() {
   const { data: voiture, isLoading: voitureLoading } = useVoiture(id || "");
   const { data: agences } = useAgences();
   const { data: options } = useOptions();
+  const { formatPrice } = useCurrency();
 
   const [dateDebut, setDateDebut] = useState<Date>();
   const [dateFin, setDateFin] = useState<Date>();
@@ -265,7 +267,7 @@ export default function Reservation() {
                         <p className="font-medium text-card-foreground">{option.nom}</p>
                         <p className="text-sm text-muted-foreground">{option.description}</p>
                       </div>
-                      <span className="font-semibold text-accent">{option.prix_jour} DH/j</span>
+                      <span className="font-semibold text-accent">{formatPrice(option.prix_jour)}/j</span>
                     </label>
                   ))}
                 </div>
@@ -331,7 +333,7 @@ export default function Reservation() {
                   />
                   <div>
                     <p className="font-semibold text-card-foreground">{voiture.marque} {voiture.modele}</p>
-                    <p className="text-sm text-muted-foreground">{voiture.prix_jour} DH/jour</p>
+                    <p className="text-sm text-muted-foreground">{formatPrice(voiture.prix_jour)}/jour</p>
                   </div>
                 </div>
 
@@ -343,17 +345,17 @@ export default function Reservation() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Véhicule</span>
-                    <span className="font-medium">{prixVoiture > 0 ? `${prixVoiture} DH` : "-"}</span>
+                    <span className="font-medium">{prixVoiture > 0 ? formatPrice(prixVoiture) : "-"}</span>
                   </div>
                   {prixOptions > 0 && (
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Options</span>
-                      <span className="font-medium">{prixOptions} DH</span>
+                      <span className="font-medium">{formatPrice(prixOptions)}</span>
                     </div>
                   )}
                   <div className="flex justify-between pt-3 border-t border-border text-base">
                     <span className="font-semibold">Total</span>
-                    <span className="font-bold text-accent">{prixTotal > 0 ? `${prixTotal} DH` : "-"}</span>
+                    <span className="font-bold text-accent">{prixTotal > 0 ? formatPrice(prixTotal) : "-"}</span>
                   </div>
                 </div>
 

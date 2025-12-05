@@ -32,14 +32,14 @@ export default function Clients() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-3xl font-heading font-bold">Clients</h1>
-        <p className="text-muted-foreground">Liste de tous les clients</p>
+        <h1 className="text-2xl sm:text-3xl font-heading font-bold">Clients</h1>
+        <p className="text-muted-foreground text-sm sm:text-base">Liste de tous les clients</p>
       </div>
 
       {/* Search */}
-      <div className="relative max-w-md">
+      <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
           placeholder="Rechercher un client..."
@@ -55,7 +55,7 @@ export default function Clients() {
       </div>
 
       {/* List */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {isLoading ? (
           <p className="text-muted-foreground">Chargement...</p>
         ) : filteredClients?.length === 0 ? (
@@ -63,37 +63,37 @@ export default function Clients() {
         ) : (
           filteredClients?.map((client) => (
             <Card key={client.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-4">
-                <div className="flex items-start gap-4">
-                  <Avatar className="h-12 w-12">
-                    <AvatarFallback className="bg-accent/10 text-accent font-semibold">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <Avatar className="h-10 w-10 sm:h-12 sm:w-12 shrink-0">
+                    <AvatarFallback className="bg-accent/10 text-accent font-semibold text-sm sm:text-base">
                       {client.prenom[0]}{client.nom[0]}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="flex-1 min-w-0 space-y-2">
-                    <h3 className="font-semibold truncate">
+                  <div className="flex-1 min-w-0 space-y-1.5 sm:space-y-2">
+                    <h3 className="font-semibold truncate text-sm sm:text-base">
                       {client.prenom} {client.nom}
                     </h3>
-                    <div className="space-y-1 text-sm">
+                    <div className="space-y-1 text-xs sm:text-sm">
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Mail className="h-3.5 w-3.5 shrink-0" />
+                        <Mail className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
                         <span className="truncate">{client.email}</span>
                       </div>
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Phone className="h-3.5 w-3.5 shrink-0" />
+                        <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
                         <span>{client.telephone}</span>
                       </div>
                       {client.ville && (
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <MapPin className="h-3.5 w-3.5 shrink-0" />
-                          <span>{client.ville}</span>
+                          <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
+                          <span className="truncate">{client.ville}</span>
                         </div>
                       )}
                       {client.created_at && (
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Calendar className="h-3.5 w-3.5 shrink-0" />
+                          <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
                           <span>
-                            Inscrit le {format(new Date(client.created_at), "d MMM yyyy", { locale: fr })}
+                            {format(new Date(client.created_at), "d MMM yyyy", { locale: fr })}
                           </span>
                         </div>
                       )}
