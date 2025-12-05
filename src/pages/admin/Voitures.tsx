@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, Car, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Car, Search, Upload, X } from "lucide-react";
 import type { CategorieVoiture, BoiteVitesse, Carburant } from "@/types/database";
 
 const categories: CategorieVoiture[] = ["economique", "compacte", "berline", "suv", "luxe", "utilitaire"];
@@ -51,6 +51,8 @@ export default function Voitures() {
   const [isOpen, setIsOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<VoitureForm>(initialForm);
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -65,6 +67,63 @@ export default function Voitures() {
       return data;
     },
   });
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+    const filePath = `cars/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('voitures-images')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      console.error('Upload error:', uploadError);
+      throw uploadError;
+    }
+
+    const { data } = supabase.storage
+      .from('voitures-images')
+      .getPublicUrl(filePath);
+
+    return data.publicUrl;
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({ title: "Veuillez sélectionner une image", variant: "destructive" });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "L'image ne doit pas dépasser 5MB", variant: "destructive" });
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const url = await uploadImage(file);
+      if (url) {
+        setForm({ ...form, image_url: url });
+        setImagePreview(url);
+        toast({ title: "Image uploadée avec succès" });
+      }
+    } catch (error) {
+      toast({ title: "Erreur lors de l'upload de l'image", variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = () => {
+    setForm({ ...form, image_url: "" });
+    setImagePreview(null);
+  };
 
   const createMutation = useMutation({
     mutationFn: async (data: VoitureForm) => {
@@ -140,6 +199,7 @@ export default function Voitures() {
     setForm(initialForm);
     setEditingId(null);
     setIsOpen(false);
+    setImagePreview(null);
   };
 
   const handleEdit = (voiture: typeof voitures extends (infer T)[] | null | undefined ? T : never) => {
@@ -158,6 +218,7 @@ export default function Voitures() {
       image_url: voiture.image_url || "",
       description: voiture.description || "",
     });
+    setImagePreview(voiture.image_url || null);
     setEditingId(voiture.id);
     setIsOpen(true);
   };
@@ -279,14 +340,53 @@ export default function Voitures() {
                   </Select>
                 </div>
               </div>
+              
+              {/* Image Upload Section */}
               <div className="space-y-2">
-                <Label>URL de l'image</Label>
-                <Input
-                  value={form.image_url || ""}
-                  onChange={(e) => setForm({ ...form, image_url: e.target.value })}
-                  placeholder="https://..."
-                />
+                <Label>Image du véhicule</Label>
+                {imagePreview || form.image_url ? (
+                  <div className="relative w-full h-48 rounded-lg overflow-hidden bg-secondary">
+                    <img 
+                      src={imagePreview || form.image_url} 
+                      alt="Aperçu" 
+                      className="w-full h-full object-cover"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2"
+                      onClick={removeImage}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ) : (
+                  <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-border rounded-lg cursor-pointer bg-secondary/50 hover:bg-secondary transition-colors">
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      {uploading ? (
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                      ) : (
+                        <>
+                          <Upload className="w-10 h-10 mb-3 text-muted-foreground" />
+                          <p className="mb-2 text-sm text-muted-foreground">
+                            <span className="font-semibold">Cliquez pour uploader</span>
+                          </p>
+                          <p className="text-xs text-muted-foreground">PNG, JPG ou WEBP (max. 5MB)</p>
+                        </>
+                      )}
+                    </div>
+                    <input 
+                      type="file" 
+                      className="hidden" 
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      disabled={uploading}
+                    />
+                  </label>
+                )}
               </div>
+
               <div className="space-y-2">
                 <Label>Description</Label>
                 <Input
@@ -295,7 +395,7 @@ export default function Voitures() {
                 />
               </div>
               <div className="flex gap-4 pt-4">
-                <Button type="submit" variant="accent" className="flex-1">
+                <Button type="submit" variant="accent" className="flex-1" disabled={uploading}>
                   {editingId ? "Mettre à jour" : "Ajouter"}
                 </Button>
                 <Button type="button" variant="outline" onClick={resetForm}>
