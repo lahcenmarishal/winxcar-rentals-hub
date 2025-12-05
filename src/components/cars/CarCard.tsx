@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Users, Fuel, Settings2, Snowflake } from "lucide-react";
 import type { Voiture } from "@/types/database";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface CarCardProps {
   voiture: Voiture & { agences?: { ville: string } | null };
@@ -32,6 +33,8 @@ const carburantLabels: Record<string, string> = {
 };
 
 export function CarCard({ voiture, className }: CarCardProps) {
+  const { formatPrice } = useCurrency();
+
   return (
     <div className={cn("group bg-card rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 overflow-hidden", className)}>
       {/* Image */}
@@ -89,7 +92,7 @@ export function CarCard({ voiture, className }: CarCardProps) {
         {/* Price & CTA */}
         <div className="flex items-center justify-between pt-4 border-t border-border">
           <div>
-            <p className="text-2xl font-bold text-accent">{voiture.prix_jour} DH</p>
+            <p className="text-2xl font-bold text-accent">{formatPrice(voiture.prix_jour)}</p>
             <p className="text-xs text-muted-foreground">par jour</p>
           </div>
           <Link to={`/voiture/${voiture.id}`}>

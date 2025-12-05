@@ -3,12 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import { useCurrency } from "@/hooks/useCurrency";
 import { CheckCircle, Calendar, MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>();
+  const { formatPrice } = useCurrency();
 
   const { data: reservation, isLoading } = useQuery({
     queryKey: ["reservation", id],
@@ -130,7 +132,7 @@ export default function Confirmation() {
             <div className="bg-secondary/50 rounded-xl p-4">
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Total à payer</span>
-                <span className="text-2xl font-bold text-accent">{reservation.prix_total} DH</span>
+                <span className="text-2xl font-bold text-accent">{formatPrice(reservation.prix_total)}</span>
               </div>
               <p className="text-xs text-muted-foreground mt-1">
                 Paiement à effectuer lors du retrait du véhicule

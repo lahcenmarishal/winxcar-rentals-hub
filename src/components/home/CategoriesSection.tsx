@@ -1,53 +1,56 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 const categories = [
   {
     id: "economique",
     name: "Économique",
     description: "Parfait pour les trajets urbains",
-    price: "250",
+    price: 250,
     image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&q=80",
   },
   {
     id: "compacte",
     name: "Compacte",
     description: "Polyvalente et confortable",
-    price: "300",
+    price: 300,
     image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&q=80",
   },
   {
     id: "berline",
     name: "Berline",
     description: "Élégance et espace",
-    price: "450",
+    price: 450,
     image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&q=80",
   },
   {
     id: "suv",
     name: "SUV",
     description: "Aventure et confort",
-    price: "400",
+    price: 400,
     image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80",
   },
   {
     id: "luxe",
     name: "Luxe",
     description: "Prestige et performance",
-    price: "800",
+    price: 800,
     image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&q=80",
   },
   {
     id: "utilitaire",
     name: "Utilitaire",
     description: "Pour vos besoins pros",
-    price: "350",
+    price: 350,
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
   },
 ];
 
 export function CategoriesSection() {
+  const { formatPrice } = useCurrency();
+
   return (
     <section className="py-16 md:py-24">
       <div className="container">
@@ -91,7 +94,7 @@ export function CategoriesSection() {
                     <p className="text-white/70 text-sm">{cat.description}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-white font-bold text-xl">{cat.price} DH</p>
+                    <p className="text-white font-bold text-xl">{formatPrice(cat.price)}</p>
                     <p className="text-white/60 text-xs">par jour</p>
                   </div>
                 </div>

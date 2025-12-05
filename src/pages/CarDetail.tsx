@@ -4,6 +4,7 @@ import { useVoiture } from "@/hooks/useVoitures";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useCurrency } from "@/hooks/useCurrency";
 import { 
   ArrowLeft, Users, Fuel, Settings2, Snowflake, 
   DoorOpen, Calendar, MapPin, Check 
@@ -33,6 +34,7 @@ const carburantLabels: Record<string, string> = {
 export default function CarDetail() {
   const { id } = useParams<{ id: string }>();
   const { data: voiture, isLoading, error } = useVoiture(id || "");
+  const { formatPrice } = useCurrency();
 
   if (isLoading) {
     return (
@@ -120,7 +122,7 @@ export default function CarDetail() {
             {/* Price */}
             <div className="bg-secondary/50 rounded-xl p-5">
               <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-accent">{voiture.prix_jour} DH</span>
+                <span className="text-4xl font-bold text-accent">{formatPrice(voiture.prix_jour)}</span>
                 <span className="text-muted-foreground">/ jour</span>
               </div>
               <p className="text-sm text-muted-foreground mt-1">
