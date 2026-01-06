@@ -26,6 +26,12 @@ const heures = [
   "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"
 ];
 
+// Informations de l'unique agence
+const AGENCE_INFO = {
+  nom: "Winxcar Marrakech",
+  adresse: "N° 2, Immeuble 224, Al Housna, Mhamid, Marrakech",
+};
+
 export default function Reservation() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -40,13 +46,14 @@ export default function Reservation() {
   const [dateFin, setDateFin] = useState<Date>();
   const [heureRetrait, setHeureRetrait] = useState("09:00");
   const [heureRetour, setHeureRetour] = useState("18:00");
-  const [agenceRetrait, setAgenceRetrait] = useState<string>("");
-  const [agenceRetour, setAgenceRetour] = useState<string>("");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
   const [availabilityError, setAvailabilityError] = useState<string | null>(null);
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+
+  // Get the single agency ID
+  const agenceId = agences?.[0]?.id || null;
 
   // Client info
   const [clientInfo, setClientInfo] = useState({
@@ -112,7 +119,7 @@ export default function Reservation() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!dateDebut || !dateFin || !agenceRetrait || !voiture) {
+    if (!dateDebut || !dateFin || !voiture || !agenceId) {
       toast({ title: "Erreur", description: "Veuillez remplir tous les champs obligatoires.", variant: "destructive" });
       return;
     }
@@ -163,14 +170,14 @@ export default function Reservation() {
 
       if (clientError) throw clientError;
 
-      // Create reservation
+      // Create reservation with the single agency
       const { data: reservationData, error: reservationError } = await supabase
         .from("reservations")
         .insert({
           voiture_id: voiture.id,
           client_id: clientData.id,
-          agence_retrait_id: agenceRetrait,
-          agence_retour_id: agenceRetour || agenceRetrait,
+          agence_retrait_id: agenceId,
+          agence_retour_id: agenceId,
           date_debut: format(dateDebut, "yyyy-MM-dd"),
           date_fin: format(dateFin, "yyyy-MM-dd"),
           heure_retrait: heureRetrait,
@@ -299,46 +306,18 @@ export default function Reservation() {
                 )}
               </div>
 
-              {/* Agences */}
+              {/* Single Agency - Display only */}
               <div className="bg-card rounded-2xl p-4 sm:p-6 shadow-soft">
                 <h2 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-accent" />
                   Lieu de retrait et retour
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Agence de retrait *</Label>
-                    <Select value={agenceRetrait} onValueChange={setAgenceRetrait}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionner une agence" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {agences?.map((agence) => (
-                          <SelectItem key={agence.id} value={agence.id}>
-                            <span className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4 text-muted-foreground" />
-                              {agence.nom} - {agence.ville}
-                            </span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Agence de retour</Label>
-                    <Select value={agenceRetour || "same"} onValueChange={(val) => setAgenceRetour(val === "same" ? "" : val)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Même agence que le retrait" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="same">Même agence que le retrait</SelectItem>
-                        {agences?.map((agence) => (
-                          <SelectItem key={agence.id} value={agence.id}>
-                            {agence.nom} - {agence.ville}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                <div className="flex items-start gap-3 p-4 bg-secondary/50 rounded-xl">
+                  <MapPin className="w-5 h-5 text-accent mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-medium text-card-foreground">{AGENCE_INFO.nom}</p>
+                    <p className="text-sm text-muted-foreground">{AGENCE_INFO.adresse}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Retrait et retour au même endroit</p>
                   </div>
                 </div>
               </div>
@@ -544,7 +523,7 @@ export default function Reservation() {
                   variant="accent"
                   size="lg"
                   className="w-full"
-                  disabled={isSubmitting || !dateDebut || !dateFin || !agenceRetrait || !isAvailable || isCheckingAvailability}
+                  disabled={isSubmitting || !dateDebut || !dateFin || !agenceId || !isAvailable || isCheckingAvailability}
                 >
                   {isSubmitting ? (
                     <>
