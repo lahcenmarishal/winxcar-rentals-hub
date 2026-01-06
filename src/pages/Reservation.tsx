@@ -193,6 +193,31 @@ export default function Reservation() {
 
       if (reservationError) throw reservationError;
 
+      // Send email notifications
+      try {
+        await supabase.functions.invoke("send-reservation-notification", {
+          body: {
+            reservation_id: reservationData.id,
+            numero_reservation: reservationData.numero_reservation,
+            client_nom: clientInfo.nom,
+            client_prenom: clientInfo.prenom,
+            client_email: clientInfo.email,
+            client_telephone: clientInfo.telephone,
+            voiture_marque: voiture.marque,
+            voiture_modele: voiture.modele,
+            date_debut: format(dateDebut, "yyyy-MM-dd"),
+            date_fin: format(dateFin, "yyyy-MM-dd"),
+            heure_retrait: heureRetrait,
+            heure_retour: heureRetour,
+            prix_total: prixTotal,
+            notes: clientInfo.notes || null,
+          },
+        });
+      } catch (emailError) {
+        console.error("Email notification error:", emailError);
+        // Don't block the reservation if email fails
+      }
+
       toast({
         title: "Réservation confirmée !",
         description: `Votre numéro de réservation est ${reservationData.numero_reservation}`,
