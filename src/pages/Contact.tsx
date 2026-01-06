@@ -5,11 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
-import { useAgences } from "@/hooks/useAgences";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send, Loader2 } from "lucide-react";
 
+// Informations de l'unique agence Winxcar
+const AGENCE_INFO = {
+  nom: "Winxcar Marrakech",
+  adresse: "N° 2, Immeuble 224, Al Housna, Mhamid, Marrakech",
+  telephone: "+212 7 20 00 36 61",
+  email: "winxcarloc@gmail.com",
+  horaires: "Lun-Dim: 8h-20h",
+};
+
 export default function Contact() {
-  const { data: agences } = useAgences();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nom: "",
@@ -37,7 +44,7 @@ export default function Contact() {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Bonjour, je souhaite obtenir des informations sur la location de véhicules.");
-    window.open(`https://wa.me/212522123456?text=${message}`, "_blank");
+    window.open(`https://wa.me/212720003661?text=${message}`, "_blank");
   };
 
   return (
@@ -63,22 +70,22 @@ export default function Contact() {
               <div className="bg-card rounded-2xl p-6 shadow-soft">
                 <h2 className="font-heading font-semibold text-xl mb-4">Contact rapide</h2>
                 <div className="space-y-4">
-                  <a href="tel:+212522123456" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                  <a href={`tel:${AGENCE_INFO.telephone.replace(/\s/g, '')}`} className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                     <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
                       <Phone className="w-5 h-5 text-accent" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Téléphone</p>
-                      <p className="font-medium text-card-foreground">+212 522 123 456</p>
+                      <p className="font-medium text-card-foreground">{AGENCE_INFO.telephone}</p>
                     </div>
                   </a>
-                  <a href="mailto:contact@winxcar.ma" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                  <a href={`mailto:${AGENCE_INFO.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                     <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
                       <Mail className="w-5 h-5 text-accent" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Email</p>
-                      <p className="font-medium text-card-foreground">contact@winxcar.ma</p>
+                      <p className="font-medium text-card-foreground">{AGENCE_INFO.email}</p>
                     </div>
                   </a>
                   <div className="flex items-center gap-3">
@@ -87,7 +94,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Horaires</p>
-                      <p className="font-medium text-card-foreground">Lun-Sam: 8h-20h</p>
+                      <p className="font-medium text-card-foreground">{AGENCE_INFO.horaires}</p>
                     </div>
                   </div>
                 </div>
@@ -98,26 +105,18 @@ export default function Contact() {
                 </Button>
               </div>
 
-              {/* Agences */}
+              {/* Notre Agence */}
               <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h2 className="font-heading font-semibold text-xl mb-4">Nos agences</h2>
-                <div className="space-y-4">
-                  {agences?.slice(0, 4).map((agence) => (
-                    <div key={agence.id} className="pb-4 border-b border-border last:border-0 last:pb-0">
-                      <div className="flex items-start gap-2">
-                        <MapPin className="w-4 h-4 text-accent mt-1 shrink-0" />
-                        <div>
-                          <p className="font-medium text-card-foreground">{agence.nom}</p>
-                          <p className="text-sm text-muted-foreground">{agence.adresse}</p>
-                          {agence.telephone && (
-                            <a href={`tel:${agence.telephone}`} className="text-sm text-accent hover:underline">
-                              {agence.telephone}
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <h2 className="font-heading font-semibold text-xl mb-4">Notre agence</h2>
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-accent mt-1 shrink-0" />
+                  <div>
+                    <p className="font-medium text-card-foreground">{AGENCE_INFO.nom}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{AGENCE_INFO.adresse}</p>
+                    <a href={`tel:${AGENCE_INFO.telephone.replace(/\s/g, '')}`} className="text-sm text-accent hover:underline mt-2 inline-block">
+                      {AGENCE_INFO.telephone}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,13 +202,18 @@ export default function Contact() {
                 </form>
               </div>
 
-              {/* Map placeholder */}
-              <div className="mt-6 bg-secondary rounded-2xl overflow-hidden h-64 flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <MapPin className="w-8 h-8 mx-auto mb-2" />
-                  <p>Carte Google Maps</p>
-                  <p className="text-sm">123 Boulevard Mohammed V, Casablanca</p>
-                </div>
+              {/* Google Maps */}
+              <div className="mt-6 bg-card rounded-2xl overflow-hidden shadow-soft">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.4744665065455!2d-8.0496184!3d31.5934564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdafe9006ee8fdbf%3A0x25259f745f2601e4!2sHousna!5e0!3m2!1sfr!2sfr!4v1767689824781!5m2!1sfr!2sfr" 
+                  width="100%" 
+                  height="300" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localisation Winxcar Marrakech"
+                />
               </div>
             </div>
           </div>

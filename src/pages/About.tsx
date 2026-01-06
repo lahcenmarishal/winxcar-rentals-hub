@@ -6,7 +6,7 @@ import { Shield, Users, Award, MapPin, ArrowRight } from "lucide-react";
 const stats = [
   { value: "500+", label: "Clients satisfaits" },
   { value: "50+", label: "Véhicules disponibles" },
-  { value: "4", label: "Agences au Maroc" },
+  { value: "1", label: "Agence à Marrakech" },
   { value: "24/7", label: "Support client" },
 ];
 
@@ -29,7 +29,7 @@ const values = [
   {
     icon: MapPin,
     title: "Proximité",
-    description: "4 agences stratégiquement situées dans les principales villes du Maroc.",
+    description: "Une agence située au cœur de Marrakech pour vous servir au mieux.",
   },
 ];
 

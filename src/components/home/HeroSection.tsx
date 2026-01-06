@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Shield, Clock, MapPin, Search, CalendarDays, Car, ChevronRight, Star } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useAgences } from "@/hooks/useAgences";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -22,18 +20,13 @@ const categories = [
 
 export function HeroSection() {
   const navigate = useNavigate();
-  const { data: agences } = useAgences();
   
-  const [villeDepart, setVilleDepart] = useState("");
-  const [villeRetour, setVilleRetour] = useState("");
   const [dateDepart, setDateDepart] = useState<Date>();
   const [dateRetour, setDateRetour] = useState<Date>();
   const [categorie, setCategorie] = useState("all");
 
   const handleSearch = () => {
     const params = new URLSearchParams();
-    if (villeDepart) params.set("agence", villeDepart);
-    if (villeRetour && villeRetour !== villeDepart) params.set("agence_retour", villeRetour);
     if (dateDepart) params.set("date_debut", format(dateDepart, "yyyy-MM-dd"));
     if (dateRetour) params.set("date_fin", format(dateRetour, "yyyy-MM-dd"));
     if (categorie && categorie !== "all") params.set("categorie", categorie);
@@ -68,7 +61,7 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium text-white border border-white/20 mb-8 animate-fade-in">
             <Star className="w-4 h-4 text-accent fill-accent" />
-            <span>Leader de la location au Maroc</span>
+            <span>Location de voitures à Marrakech</span>
             <ChevronRight className="w-4 h-4" />
           </div>
 
@@ -82,12 +75,12 @@ export function HeroSection() {
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-12 animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
-            Des centaines de véhicules disponibles dans 4 villes du Maroc. 
+            Large choix de véhicules disponibles à Marrakech. 
             Réservez en quelques clics et prenez la route en toute sérénité.
           </p>
 
           {/* Main Reservation Form Card */}
-          <div className="w-full max-w-5xl animate-scale-in" style={{ animationDelay: '0.2s' }}>
+          <div className="w-full max-w-4xl animate-scale-in" style={{ animationDelay: '0.2s' }}>
             <div className="relative">
               {/* Glow Effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-accent/50 via-white/20 to-accent/50 rounded-3xl blur-xl opacity-50" />
@@ -105,7 +98,7 @@ export function HeroSection() {
                       <h2 className="text-xl md:text-2xl font-heading font-bold text-foreground">
                         Réservez maintenant
                       </h2>
-                      <p className="text-sm text-muted-foreground">Meilleurs prix garantis</p>
+                      <p className="text-sm text-muted-foreground">Retrait et retour à Marrakech</p>
                     </div>
                   </div>
                   <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
@@ -114,54 +107,9 @@ export function HeroSection() {
                   </div>
                 </div>
 
-                {/* Form Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3">
+                {/* Form Grid - Simplified without agency selection */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   
-                  {/* Ville de départ */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                      Lieu de prise en charge
-                    </label>
-                    <Select value={villeDepart} onValueChange={setVilleDepart}>
-                      <SelectTrigger className="w-full h-14 bg-secondary/50 border-border/50 hover:bg-secondary/80 transition-colors rounded-xl text-left">
-                        <div className="flex items-center gap-3">
-                          <MapPin className="w-5 h-5 text-accent shrink-0" />
-                          <SelectValue placeholder="Sélectionner une agence" />
-                        </div>
-                      </SelectTrigger>
-                      <SelectContent className="bg-popover border-border z-50">
-                        {agences?.map((agence) => (
-                          <SelectItem key={agence.id} value={agence.id}>
-                            {agence.nom} - {agence.ville}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Ville de retour */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                      Lieu de retour
-                    </label>
-                    <Select value={villeRetour || "same"} onValueChange={(val) => setVilleRetour(val === "same" ? "" : val)}>
-                      <SelectTrigger className="w-full h-14 bg-secondary/50 border-border/50 hover:bg-secondary/80 transition-colors rounded-xl text-left">
-                        <div className="flex items-center gap-3">
-                          <MapPin className="w-5 h-5 text-muted-foreground shrink-0" />
-                          <SelectValue placeholder="Même lieu" />
-                        </div>
-                      </SelectTrigger>
-                      <SelectContent className="bg-popover border-border z-50">
-                        <SelectItem value="same">Même lieu que le départ</SelectItem>
-                        {agences?.map((agence) => (
-                          <SelectItem key={agence.id} value={agence.id}>
-                            {agence.nom} - {agence.ville}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
                   {/* Date de départ */}
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
@@ -269,12 +217,12 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Trust Badges */}
+          {/* Trust Badges - Updated for single agency */}
           <div className="flex flex-wrap justify-center gap-8 md:gap-12 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             {[
               { icon: Shield, label: "Assurance tous risques", sublabel: "Incluse" },
               { icon: Clock, label: "Disponible", sublabel: "24h/24 - 7j/7" },
-              { icon: MapPin, label: "4 agences", sublabel: "Partout au Maroc" },
+              { icon: MapPin, label: "Marrakech", sublabel: "Retrait & Retour" },
               { icon: Star, label: "+500 clients", sublabel: "Satisfaits" },
             ].map(({ icon: Icon, label, sublabel }) => (
               <div key={label} className="flex items-center gap-3 text-white/90">

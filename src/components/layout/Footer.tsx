@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { Car, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
 
+// Informations de l'unique agence Winxcar
+const CONTACT_INFO = {
+  adresse: "N° 2, Immeuble 224, Al Housna, Mhamid, Marrakech",
+  telephone: "+212 7 20 00 36 61",
+  email: "winxcarloc@gmail.com",
+};
+
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -73,18 +80,18 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-primary-foreground/70">
                 <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                <span>123 Boulevard Mohammed V, Casablanca, Maroc</span>
+                <span>{CONTACT_INFO.adresse}</span>
               </li>
               <li>
-                <a href="tel:+212522123456" className="flex items-center gap-3 text-sm text-primary-foreground/70 hover:text-white transition-colors">
+                <a href={`tel:${CONTACT_INFO.telephone.replace(/\s/g, '')}`} className="flex items-center gap-3 text-sm text-primary-foreground/70 hover:text-white transition-colors">
                   <Phone className="w-5 h-5 text-white" />
-                  <span>+212 522 123 456</span>
+                  <span>{CONTACT_INFO.telephone}</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@winxcar.ma" className="flex items-center gap-3 text-sm text-primary-foreground/70 hover:text-white transition-colors">
+                <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-center gap-3 text-sm text-primary-foreground/70 hover:text-white transition-colors">
                   <Mail className="w-5 h-5 text-white" />
-                  <span>contact@winxcar.ma</span>
+                  <span>{CONTACT_INFO.email}</span>
                 </a>
               </li>
             </ul>
