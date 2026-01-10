@@ -27,7 +27,7 @@ export function CTASection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <a href="tel:+212522123456">
+            <a href="tel:+212720003661">
               <Button variant="hero-outline" size="xl" className="group">
                 <Phone className="w-5 h-5" />
                 Appelez-nous

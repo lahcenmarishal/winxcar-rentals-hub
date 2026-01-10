@@ -9,11 +9,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Car, Mail, Lock, Loader2 } from "lucide-react";
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -27,9 +26,7 @@ export default function Auth() {
     e.preventDefault();
     setIsLoading(true);
 
-    const { error } = isLogin 
-      ? await signIn(email, password)
-      : await signUp(email, password);
+    const { error } = await signIn(email, password);
 
     if (error) {
       toast({
@@ -38,11 +35,6 @@ export default function Auth() {
           ? "Email ou mot de passe incorrect"
           : error.message,
         variant: "destructive",
-      });
-    } else if (!isLogin) {
-      toast({
-        title: "Compte créé",
-        description: "Votre compte a été créé avec succès.",
       });
     }
 
@@ -59,12 +51,10 @@ export default function Auth() {
             </div>
           </div>
           <CardTitle className="text-2xl font-heading">
-            {isLogin ? "Connexion" : "Créer un compte"}
+            Connexion Admin
           </CardTitle>
           <CardDescription>
-            {isLogin 
-              ? "Connectez-vous à votre compte administrateur" 
-              : "Créez un nouveau compte"}
+            Connectez-vous à votre compte administrateur
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -102,21 +92,9 @@ export default function Auth() {
             </div>
             <Button type="submit" variant="accent" className="w-full" disabled={isLoading}>
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? "Se connecter" : "Créer le compte"}
+              Se connecter
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isLogin 
-                ? "Pas encore de compte ? Créer un compte" 
-                : "Déjà un compte ? Se connecter"}
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>

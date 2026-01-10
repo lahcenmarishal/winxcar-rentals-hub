@@ -18,7 +18,7 @@ const EUR_TO_MAD_RATE = 10.8;
 export function CurrencyProvider({ children }: { children: ReactNode }) {
   const [currency, setCurrencyState] = useState<Currency>(() => {
     const saved = localStorage.getItem("winxcar-currency");
-    return (saved as Currency) || "MAD";
+    return (saved as Currency) || "EUR";
   });
 
   const setCurrency = (newCurrency: Currency) => {

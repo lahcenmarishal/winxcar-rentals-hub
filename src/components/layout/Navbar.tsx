@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Car, Phone, LayoutDashboard, LogIn, LogOut } from "lucide-react";
+import { Menu, X, Car, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -15,7 +14,6 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
@@ -50,29 +48,6 @@ export function Navbar() {
             <Phone className="w-4 h-4" />
             <span>+212 7 20 00 36 61</span>
           </a>
-          
-          {isAdmin && (
-            <Link to="/admin">
-              <Button variant="outline" size="sm" className="gap-2">
-                <LayoutDashboard className="w-4 h-4" />
-                Dashboard
-              </Button>
-            </Link>
-          )}
-          
-          {user ? (
-            <Button variant="ghost" size="sm" onClick={signOut} className="gap-2">
-              <LogOut className="w-4 h-4" />
-              Déconnexion
-            </Button>
-          ) : (
-            <Link to="/auth">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <LogIn className="w-4 h-4" />
-                Connexion
-              </Button>
-            </Link>
-          )}
           
           <Link to="/catalogue">
             <Button variant="default" size="default">
@@ -115,37 +90,14 @@ export function Navbar() {
             </Link>
           ))}
           
-          {isAdmin && (
-            <Link
-              to="/admin"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2"
+          <div className="mt-4 pt-4 border-t border-border flex flex-col gap-3">
+            <a 
+              href="tel:+212720003661" 
+              className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
             >
-              <LayoutDashboard className="w-4 h-4" />
-              Dashboard Admin
-            </Link>
-          )}
-          
-          {user ? (
-            <button
-              onClick={() => { signOut(); setIsOpen(false); }}
-              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2 text-left"
-            >
-              <LogOut className="w-4 h-4" />
-              Déconnexion
-            </button>
-          ) : (
-            <Link
-              to="/auth"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 rounded-lg font-medium transition-colors hover:bg-secondary flex items-center gap-2"
-            >
-              <LogIn className="w-4 h-4" />
-              Connexion
-            </Link>
-          )}
-          
-          <div className="mt-4 pt-4 border-t border-border">
+              <Phone className="w-4 h-4" />
+              <span>+212 7 20 00 36 61</span>
+            </a>
             <Link to="/catalogue" onClick={() => setIsOpen(false)}>
               <Button variant="default" className="w-full">
                 Réserver Maintenant
