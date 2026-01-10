@@ -6,7 +6,8 @@ import {
   Users, 
   Settings,
   LogOut,
-  ChevronLeft
+  ChevronLeft,
+  Image
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -15,6 +16,7 @@ import { cn } from "@/lib/utils";
 const menuItems = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard },
   { href: "/admin/voitures", label: "Véhicules", icon: Car },
+  { href: "/admin/categories", label: "Catégories", icon: Image },
   { href: "/admin/reservations", label: "Réservations", icon: Calendar },
   { href: "/admin/clients", label: "Clients", icon: Users },
   { href: "/admin/settings", label: "Paramètres", icon: Settings },
