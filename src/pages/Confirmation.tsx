@@ -236,13 +236,13 @@ export default function Confirmation() {
               Un email de confirmation a été envoyé à <strong className="text-foreground">{reservation.clients?.email}</strong>
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
-              <a href="tel:+212522123456" className="flex items-center gap-2 text-accent hover:underline">
+              <a href="tel:+212720003661" className="flex items-center gap-2 text-accent hover:underline">
                 <Phone className="w-4 h-4" />
-                +212 522 123 456
+                +212 7 20 00 36 61
               </a>
-              <a href="mailto:contact@winxcar.ma" className="flex items-center gap-2 text-accent hover:underline">
+              <a href="mailto:winxcarloc@gmail.com" className="flex items-center gap-2 text-accent hover:underline">
                 <Mail className="w-4 h-4" />
-                contact@winxcar.ma
+                winxcarloc@gmail.com
               </a>
             </div>
           </div>
