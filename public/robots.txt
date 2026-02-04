@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://winxcar.ma/sitemap.xml
+Sitemap: https://winxcar.com/sitemap.xml
