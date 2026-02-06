@@ -7,7 +7,8 @@ import {
   Settings,
   LogOut,
   ChevronLeft,
-  Image
+  Image,
+  FileText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -17,6 +18,7 @@ const menuItems = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard },
   { href: "/admin/voitures", label: "Véhicules", icon: Car },
   { href: "/admin/categories", label: "Catégories", icon: Image },
+  { href: "/admin/blogs", label: "Blog", icon: FileText },
   { href: "/admin/reservations", label: "Réservations", icon: Calendar },
   { href: "/admin/clients", label: "Clients", icon: Users },
   { href: "/admin/settings", label: "Paramètres", icon: Settings },
