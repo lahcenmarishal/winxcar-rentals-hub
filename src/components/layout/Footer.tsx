@@ -47,6 +47,7 @@ export function Footer() {
               {[
                 { href: "/", label: "Accueil" },
                 { href: "/catalogue", label: "Nos Véhicules" },
+                { href: "/blog", label: "Blog" },
                 { href: "/a-propos", label: "À Propos" },
                 { href: "/contact", label: "Contact" },
               ].map((link) => (

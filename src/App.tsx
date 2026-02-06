@@ -20,6 +20,9 @@ import Categories from "./pages/admin/Categories";
 import Reservations from "./pages/admin/Reservations";
 import Clients from "./pages/admin/Clients";
 import Settings from "./pages/admin/Settings";
+import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
+import AdminBlogs from "./pages/admin/Blogs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +41,8 @@ const App = () => (
               <Route path="/voiture/:id" element={<CarDetail />} />
               <Route path="/reservation/:id" element={<Reservation />} />
               <Route path="/confirmation/:id" element={<Confirmation />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogDetail />} />
               <Route path="/a-propos" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
@@ -45,6 +50,7 @@ const App = () => (
                 <Route index element={<Dashboard />} />
                 <Route path="voitures" element={<Voitures />} />
                 <Route path="categories" element={<Categories />} />
+                <Route path="blogs" element={<AdminBlogs />} />
                 <Route path="reservations" element={<Reservations />} />
                 <Route path="clients" element={<Clients />} />
                 <Route path="settings" element={<Settings />} />
