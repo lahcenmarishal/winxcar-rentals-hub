@@ -1,73 +1,50 @@
-# Welcome to your Lovable project
+# WinxCar
 
-## Project info
+Plateforme de réservation en ligne de voitures permettant aux clients de découvrir les véhicules disponibles et de réserver leur voiture facilement.
 
-**URL**: https://lovable.dev/projects/af755cff-6739-4b2a-83e3-9ceede96fdb5
+Site en ligne : https://winxcar.com/
 
-## How can I edit this code?
+## Le problème
 
-There are several ways of editing your application.
+Trouver et réserver une voiture de location peut être compliqué : manque de visibilité sur les véhicules disponibles, difficulté à comparer les offres et processus de réservation parfois peu pratique.
 
-**Use Lovable**
+## La solution
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/af755cff-6739-4b2a-83e3-9ceede96fdb5) and start prompting.
+WinxCar propose une plateforme digitale qui simplifie la recherche et la réservation de voitures :
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Consultation du catalogue de véhicules.
+2. Recherche de voitures selon les besoins et les critères souhaités.
+3. Consultation des détails et des disponibilités.
+4. Réservation en ligne d'un véhicule.
 
-**Use your preferred IDE**
+## Fonctionnalités
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Catalogue de voitures
+- Recherche et filtrage des véhicules
+- Présentation détaillée des voitures
+- Consultation des disponibilités
+- Réservation en ligne
+- Gestion des demandes de réservation
+- Interface moderne et intuitive
+- Design responsive (mobile, tablette et ordinateur)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technologies
 
-Follow these steps:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone https://github.com/lahcenmarishal/winxcar-rentals-hub.git
+cd winxcar-rentals-hub
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Auteur
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/af755cff-6739-4b2a-83e3-9ceede96fdb5) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Lahcen, développeur IA.
